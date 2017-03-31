@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol MultiColumnConfigurable: class {
+public protocol MultiColumnConfigurable: class {
     init(with config: ETMultiColumnView.Configuration)
     func customize(with config: ETMultiColumnView.Configuration) throws
     static func identifier(with config: ETMultiColumnView.Configuration) -> String
