@@ -8,8 +8,15 @@
 
 import UIKit
 
+protocol MultiColumnConfigurable: class {
+    init(with config: ETMultiColumnView.Configuration)
+    func customize(with config: ETMultiColumnView.Configuration) throws
+    static func identifier(with config: ETMultiColumnView.Configuration) -> String
+    static func height(with config: ETMultiColumnView.Configuration, width: CGFloat) throws -> CGFloat
+}
+
 /// Configurable multi-column view
-public final class ETMultiColumnView: UIView {
+public final class ETMultiColumnView: UIView, MultiColumnConfigurable {
     
     // MARK: - Variables
     // MARK: private
