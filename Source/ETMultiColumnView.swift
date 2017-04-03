@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol MultiColumnConfigurable: class {
+public protocol MultiColumnConfigurable {
     init(with config: ETMultiColumnView.Configuration)
     func customize(with config: ETMultiColumnView.Configuration) throws
     static func identifier(with config: ETMultiColumnView.Configuration) -> String
@@ -75,6 +75,9 @@ public final class ETMultiColumnView: UIView, MultiColumnConfigurable {
             
             lastRightEdge += columnWrapper.size.width
         }
+
+        // Adjusts height of view accrding maxHeight
+        frame = CGRect(origin: frame.origin, size: CGSize(width: frame.width, height: maxHeight))
     }
 
     private func makeFrame(for columnWrapper: ETMultiColumnView.Configuration.ColumnWrapper, x: CGFloat, maxHeight: CGFloat) -> CGRect {

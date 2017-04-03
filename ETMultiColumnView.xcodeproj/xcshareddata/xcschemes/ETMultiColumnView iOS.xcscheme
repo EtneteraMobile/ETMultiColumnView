@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "71B788581E6D47C900F5D235"
-               BuildableName = "ETMultiColumnView.framework"
+               BuildableName = "ETMultiColumnView.temp_caseinsensitive_rename.framework"
                BlueprintName = "ETMultiColumnView iOS"
                ReferencedContainer = "container:ETMultiColumnView.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "71B788581E6D47C900F5D235"
-            BuildableName = "ETMultiColumnView.framework"
+            BuildableName = "ETMultiColumnView.temp_caseinsensitive_rename.framework"
             BlueprintName = "ETMultiColumnView iOS"
             ReferencedContainer = "container:ETMultiColumnView.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "71B788581E6D47C900F5D235"
-            BuildableName = "ETMultiColumnView.framework"
+            BuildableName = "ETMultiColumnView.temp_caseinsensitive_rename.framework"
             BlueprintName = "ETMultiColumnView iOS"
             ReferencedContainer = "container:ETMultiColumnView.xcodeproj">
          </BuildableReference>
