@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import ETMultiColumnBadgeViewProvider
-import ETMultiColumnLabelProvider
 
 /// Protocol describes mandatory functionality of instance that is able to be
 /// used in column of `ETMultiColumnView`.
@@ -30,8 +28,3 @@ public protocol ViewProvider {
     /// calculated based on content.
     func size(for width: CGFloat) -> CGSize
 }
-
-// Marks providers with protocol
-
-extension BadgeViewProvider: ViewProvider {}
-extension LabelProvider: ViewProvider {}

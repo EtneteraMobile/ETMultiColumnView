@@ -18,12 +18,6 @@
 		7127D9951E92187F00A44C21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7127D9931E92187F00A44C21 /* Main.storyboard */; };
 		7127D9971E92187F00A44C21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7127D9961E92187F00A44C21 /* Assets.xcassets */; };
 		7127D99A1E92187F00A44C21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7127D9981E92187F00A44C21 /* LaunchScreen.storyboard */; };
-		7127D99F1E92188500A44C21 /* ETMultiColumnLabelProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71CB19831E8E6C1200BB1093 /* ETMultiColumnLabelProvider.framework */; };
-		7127D9A01E92188500A44C21 /* ETMultiColumnLabelProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 71CB19831E8E6C1200BB1093 /* ETMultiColumnLabelProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7127D9A11E92188500A44C21 /* ETMultiColumnBadgeViewProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71CB19751E8E6A8800BB1093 /* ETMultiColumnBadgeViewProvider.framework */; };
-		7127D9A21E92188500A44C21 /* ETMultiColumnBadgeViewProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 71CB19751E8E6A8800BB1093 /* ETMultiColumnBadgeViewProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		71CB19761E8E6A8800BB1093 /* ETMultiColumnBadgeViewProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71CB19751E8E6A8800BB1093 /* ETMultiColumnBadgeViewProvider.framework */; };
-		71CB19841E8E6C1200BB1093 /* ETMultiColumnLabelProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71CB19831E8E6C1200BB1093 /* ETMultiColumnLabelProvider.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,8 +27,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7127D9A01E92188500A44C21 /* ETMultiColumnLabelProvider.framework in Embed Frameworks */,
-				7127D9A21E92188500A44C21 /* ETMultiColumnBadgeViewProvider.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,8 +49,6 @@
 		7127D9991E92187F00A44C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7127D99B1E92187F00A44C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71B788591E6D47C900F5D235 /* ETMultiColumnView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ETMultiColumnView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		71CB19751E8E6A8800BB1093 /* ETMultiColumnBadgeViewProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ETMultiColumnBadgeViewProvider.framework; path = Carthage/Build/iOS/ETMultiColumnBadgeViewProvider.framework; sourceTree = "<group>"; };
-		71CB19831E8E6C1200BB1093 /* ETMultiColumnLabelProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ETMultiColumnLabelProvider.framework; path = Carthage/Build/iOS/ETMultiColumnLabelProvider.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +56,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7127D99F1E92188500A44C21 /* ETMultiColumnLabelProvider.framework in Frameworks */,
-				7127D9A11E92188500A44C21 /* ETMultiColumnBadgeViewProvider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,8 +63,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71CB19841E8E6C1200BB1093 /* ETMultiColumnLabelProvider.framework in Frameworks */,
-				71CB19761E8E6A8800BB1093 /* ETMultiColumnBadgeViewProvider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +94,6 @@
 		71B7884F1E6D47C900F5D235 = {
 			isa = PBXGroup;
 			children = (
-				71CB19831E8E6C1200BB1093 /* ETMultiColumnLabelProvider.framework */,
-				71CB19751E8E6A8800BB1093 /* ETMultiColumnBadgeViewProvider.framework */,
 				71B788641E6D492900F5D235 /* Source */,
 				7127D98E1E92187F00A44C21 /* Example */,
 				71B7885A1E6D47C900F5D235 /* Products */,
