@@ -1,2 +1,3 @@
 github "EtneteraMobile/ETMultiColumnBadgeViewProvider" "swift2"
 github "EtneteraMobile/ETMultiColumnLabelProvider" "swift2"
+github "EtneteraMobile/ETMultiColumnNestingProvider" "swift2"
