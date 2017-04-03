@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/jancislinsky/Repos/iOS/ETMultiColumnView/ETMultiColumnView.xcodeproj">
+      location = "self:ETMultiColumnCell.xcodeproj">
    </FileRef>
 </Workspace>

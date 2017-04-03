@@ -56,7 +56,7 @@
 		7127D9961E92187F00A44C21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7127D9991E92187F00A44C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7127D99B1E92187F00A44C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		71B788591E6D47C900F5D235 /* ETMultiColumnView.temp_caseinsensitive_rename.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ETMultiColumnView.temp_caseinsensitive_rename.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71B788591E6D47C900F5D235 /* ETMultiColumnView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ETMultiColumnView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71CB19751E8E6A8800BB1093 /* ETMultiColumnBadgeViewProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ETMultiColumnBadgeViewProvider.framework; path = Carthage/Build/iOS/ETMultiColumnBadgeViewProvider.framework; sourceTree = "<group>"; };
 		71CB19831E8E6C1200BB1093 /* ETMultiColumnLabelProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ETMultiColumnLabelProvider.framework; path = Carthage/Build/iOS/ETMultiColumnLabelProvider.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,7 +119,7 @@
 		71B7885A1E6D47C900F5D235 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				71B788591E6D47C900F5D235 /* ETMultiColumnView.temp_caseinsensitive_rename.framework */,
+				71B788591E6D47C900F5D235 /* ETMultiColumnView.framework */,
 				7127D98D1E92187F00A44C21 /* Example.app */,
 			);
 			name = Products;
@@ -185,7 +185,7 @@
 			);
 			name = "ETMultiColumnView iOS";
 			productName = ETMultiColumnCell;
-			productReference = 71B788591E6D47C900F5D235 /* ETMultiColumnView.temp_caseinsensitive_rename.framework */;
+			productReference = 71B788591E6D47C900F5D235 /* ETMultiColumnView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -429,7 +429,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cz.etnetera.ETMultiColumnView;
-				PRODUCT_NAME = ETMultiColumnView.temp_caseinsensitive_rename;
+				PRODUCT_NAME = ETMultiColumnView;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -454,7 +454,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cz.etnetera.ETMultiColumnView;
-				PRODUCT_NAME = ETMultiColumnView.temp_caseinsensitive_rename;
+				PRODUCT_NAME = ETMultiColumnView;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -469,6 +469,7 @@
 				7127D99D1E92187F00A44C21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		71B788531E6D47C900F5D235 /* Build configuration list for PBXProject "ETMultiColumnView" */ = {
 			isa = XCConfigurationList;
