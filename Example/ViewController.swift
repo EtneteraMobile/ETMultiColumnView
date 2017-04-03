@@ -14,8 +14,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         let col1 = ETMultiColumnView.Configuration.Column(layout: .relative(), content: PlaceholderProvider())
-        let col2 = ETMultiColumnView.Configuration.Column(layout: .relative(), content: PlaceholderProvider())
-        let line1 = ETMultiColumnView.Configuration(columns: [col1, col2])
+        let col2 = ETMultiColumnView.Configuration.Column(layout: .fitContent(maxWidth: 325.0), content: PlaceholderProvider())
+        let col3 = ETMultiColumnView.Configuration.Column(layout: .fixed(50.0), content: PlaceholderProvider())
+        let line1 = ETMultiColumnView.Configuration(columns: [col1, col2, col3])
 
         let lineView = ETMultiColumnView(with: line1)
         view.addSubview(lineView)
@@ -38,7 +39,7 @@ struct PlaceholderProvider: ViewProvider {
     func customize(view view: UIView) {}
 
     func size(for width: CGFloat) -> CGSize {
-        return CGSize(width: width, height: round(width / 2.0))
+        return CGSize(width: min(width, 300.0), height: 100.0)
     }
 }
 

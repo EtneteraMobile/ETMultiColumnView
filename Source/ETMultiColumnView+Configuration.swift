@@ -58,6 +58,10 @@ public extension ETMultiColumnView.Configuration {
             return layout.hashValue ^ viewProvider.hashValue
         }
 
+        // MARK: internal
+
+        var calculatedSize: CGSize?
+
         // MARK: - Initialization
 
         public init(layout: Layout, content viewProvider: ViewProvider) {
@@ -87,6 +91,7 @@ public extension ETMultiColumnView.Configuration.Column {
 
         case rel(borders: [Border], edges: Edges, verticalAlignment: VerticalAlignment)
         case fix(width: CGFloat, borders: [Border], edges: Edges, verticalAlignment: VerticalAlignment)
+        case fit(maxWidth: CGFloat, borders: [Border], edges: Edges, verticalAlignment: VerticalAlignment)
 
         // MARK: - Builders
 
@@ -98,16 +103,8 @@ public extension ETMultiColumnView.Configuration.Column {
             return .fix(width: width, borders: borders, edges: edges, verticalAlignment: verticalAlignment)
         }
 
-        /// Returns fixed width in case fixed layout. Otherwise returns nil
-        ///
-        /// - Returns: width (static layout) or nil (relative layout)
-        public func fixedWidth() -> CGFloat? {
-            switch self {
-            case .rel(borders: _, edges: _, verticalAlignment: _):
-                return nil
-            case .fix(width: let width, borders: _, edges: _, verticalAlignment: _):
-                return width
-            }
+        public static func fitContent(maxWidth maxWidth: CGFloat = CGFloat.max, borders: [Border] = [], edges: Edges = .zero, verticalAlignment: VerticalAlignment = .top) -> Layout {
+            return .fit(maxWidth: maxWidth, borders: borders, edges: edges, verticalAlignment: verticalAlignment)
         }
     }
 }
