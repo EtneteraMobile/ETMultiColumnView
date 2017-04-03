@@ -69,10 +69,10 @@ public final class ETMultiColumnView: UIView, MultiColumnConfigurable {
             guard offset < subviewsCount else { return }
             let subview = subviews[offset]
 
+            subview.frame = makeFrame(for: columnWrapper, x: lastRightEdge, maxHeight: maxHeight)
             config.columns[offset].viewProvider.customize(view: subview)
             adjustBorder(on: borderLayer, at: offset, x: lastRightEdge, columnWrapper)
-            subview.frame = makeFrame(for: columnWrapper, x: lastRightEdge, maxHeight: maxHeight)
-            
+
             lastRightEdge += columnWrapper.size.width
         }
 
