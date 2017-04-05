@@ -27,9 +27,9 @@ public extension ETMultiColumnView.Configuration {
 
         // Calculates fitContent columns width
         let precalculatedColumns: [Column] = columns.map {
-            if case .fit(maxWidth: let maxWidth, borders: _, edges: let edges, verticalAlignment: _) = $0.layout {
+            if case .fit(maxOutWidth: let maxWidth, borders: _, edges: let edges, verticalAlignment: _) = $0.layout {
                 var col = $0
-                col.calculatedSize = col.viewProvider.size(for: (min(width, maxWidth) - edges.insets.horizontal))
+                col.calculatedInnerSize = col.viewProvider.size(for: (min(width, maxWidth) - edges.insets.horizontal))
                 return col
             } else {
                 return $0
@@ -39,10 +39,10 @@ public extension ETMultiColumnView.Configuration {
         // Calculates fixed+fit columns width sum
         var relativeColumnsCount = 0
         let reservedColumnsWidth = precalculatedColumns.reduce(CGFloat(0.0)) { a, x in
-            if case .fix(width: let width, borders: _, edges: _, verticalAlignment: _) = x.layout {
+            if case .fix(outWidth: let width, borders: _, edges: _, verticalAlignment: _) = x.layout {
                 return a + width
-            } else if case .fit(maxWidth: _, borders: _, edges: _, verticalAlignment: _) = x.layout {
-                return a + (x.calculatedSize?.width ?? 0.0)
+            } else if case .fit(maxOutWidth: _, borders: _, edges: let e, verticalAlignment: _) = x.layout {
+                return a + (x.calculatedInnerSize == nil ? 0.0 : x.calculatedInnerSize!.width + e.insets.horizontal)
             } else {
                 relativeColumnsCount += 1
                 return a
@@ -62,24 +62,24 @@ public extension ETMultiColumnView.Configuration {
         // Calculates columns frame
         let result:[ColumnWrapper] = try precalculatedColumns.map {
             let edges: Column.Layout.Edges
-            let width: CGFloat
+            let outWidth: CGFloat
             let borders: [Column.Layout.Border]
             let alignment: Column.Layout.VerticalAlignment
 
             switch $0.layout {
             case let .rel(borders: b, edges: e, verticalAlignment: a):
                 borders = b
-                width = relativeColumnWidth
+                outWidth = relativeColumnWidth
                 edges = e
                 alignment = a
-            case let .fix(width: w, borders: b, edges: e, verticalAlignment: a):
+            case let .fix(outWidth: w, borders: b, edges: e, verticalAlignment: a):
                 borders = b
-                width = w
+                outWidth = w
                 edges = e
                 alignment = a
-            case let .fit(maxWidth: _, borders: b, edges: e, verticalAlignment: a):
+            case let .fit(maxOutWidth: _, borders: b, edges: e, verticalAlignment: a):
                 borders = b
-                width = $0.calculatedSize?.width ?? 0.0
+                outWidth = ($0.calculatedInnerSize == nil ? 0.0 : $0.calculatedInnerSize!.width + e.insets.horizontal)
                 edges = e
                 alignment = a
             }
@@ -87,9 +87,9 @@ public extension ETMultiColumnView.Configuration {
             let verticalEdges = edges.insets.vertical
             let horizontalEdges = edges.insets.horizontal
 
-            let inWidth = width - horizontalEdges
+            let inWidth = outWidth - horizontalEdges
             guard inWidth >= 0 else {
-                let description = "Horizontal edges are longer than cell width (horizontalEdges=\(horizontalEdges), columnWidth=\(width))."
+                let description = "Horizontal edges are longer than cell width (horizontalEdges=\(horizontalEdges), columnWidth=\(outWidth))."
                 throw ETMultiColumnView.Error.insufficientWidth(description: description)
             }
 
@@ -99,14 +99,14 @@ public extension ETMultiColumnView.Configuration {
             } else {
                 let height: CGFloat
 
-                let size = $0.calculatedSize ?? $0.viewProvider.size(for: inWidth)
+                let size = $0.calculatedInnerSize ?? $0.viewProvider.size(for: inWidth)
                 height = size.height
                 guard size.width <= inWidth else {
                     let description = "Width of custom view is loonger than given width of cell content view (provider.viewSize().width=\(size.width), inWidth=\(inWidth))."
                     throw ETMultiColumnView.Error.insufficientWidth(description: description)
                 }
 
-                return ColumnWrapper(column: $0, size: CGSize(width: width, height: height + verticalEdges), edges: edges, borders: borders, alignment: alignment)
+                return ColumnWrapper(column: $0, size: CGSize(width: outWidth, height: height + verticalEdges), edges: edges, borders: borders, alignment: alignment)
             }
         }
         

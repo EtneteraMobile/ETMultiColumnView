@@ -60,7 +60,7 @@ public extension ETMultiColumnView.Configuration {
 
         // MARK: internal
 
-        var calculatedSize: CGSize?
+        var calculatedInnerSize: CGSize?
 
         // MARK: - Initialization
 
@@ -90,21 +90,21 @@ public extension ETMultiColumnView.Configuration.Column {
         // MARK: - Cases
 
         case rel(borders: [Border], edges: Edges, verticalAlignment: VerticalAlignment)
-        case fix(width: CGFloat, borders: [Border], edges: Edges, verticalAlignment: VerticalAlignment)
-        case fit(maxWidth: CGFloat, borders: [Border], edges: Edges, verticalAlignment: VerticalAlignment)
+        case fix(outWidth: CGFloat, borders: [Border], edges: Edges, verticalAlignment: VerticalAlignment)
+        case fit(maxOutWidth: CGFloat, borders: [Border], edges: Edges, verticalAlignment: VerticalAlignment)
 
         // MARK: - Builders
 
-        public static func relative(borders: [Border] = [], edges: Edges = .zero, verticalAlignment: VerticalAlignment = .top) -> Layout {
+        public static func relative(borders borders: [Border] = [], edges: Edges = .zero, verticalAlignment: VerticalAlignment = .top) -> Layout {
             return .rel(borders: borders, edges: edges, verticalAlignment: verticalAlignment)
         }
 
-        public static func fixed(width: CGFloat, borders: [Border] = [], edges: Edges = .zero, verticalAlignment: VerticalAlignment = .top) -> Layout {
-            return .fix(width: width, borders: borders, edges: edges, verticalAlignment: verticalAlignment)
+        public static func fixed(outWidth width: CGFloat, borders: [Border] = [], edges: Edges = .zero, verticalAlignment: VerticalAlignment = .top) -> Layout {
+            return .fix(outWidth: width, borders: borders, edges: edges, verticalAlignment: verticalAlignment)
         }
 
-        public static func fitContent(maxWidth maxWidth: CGFloat = CGFloat.max, borders: [Border] = [], edges: Edges = .zero, verticalAlignment: VerticalAlignment = .top) -> Layout {
-            return .fit(maxWidth: maxWidth, borders: borders, edges: edges, verticalAlignment: verticalAlignment)
+        public static func fitContent(maxOutWidth maxWidth: CGFloat = CGFloat.max, borders: [Border] = [], edges: Edges = .zero, verticalAlignment: VerticalAlignment = .top) -> Layout {
+            return .fit(maxOutWidth: maxWidth, borders: borders, edges: edges, verticalAlignment: verticalAlignment)
         }
     }
 }
