@@ -29,7 +29,7 @@ public extension ETMultiColumnView.Configuration {
         let precalculatedColumns: [Column] = columns.map {
             if case .fit(maxOutWidth: let maxWidth, borders: _, edges: let edges, verticalAlignment: _) = $0.layout {
                 var col = $0
-                col.calculatedInnerSize = col.viewProvider.size(for: (min(width, maxWidth) - edges.insets.horizontal))
+                col.calculatedInnerSize = col.viewProvider.boundingSize(widthConstraint: (min(width, maxWidth) - edges.insets.horizontal))
                 return col
             } else {
                 return $0
@@ -100,7 +100,13 @@ public extension ETMultiColumnView.Configuration {
                 }
             }
 
-            let size = col.calculatedInnerSize ?? col.viewProvider.size(for: inWidth)
+            let size: CGSize
+            if let calculated = col.calculatedInnerSize {
+                size = calculated
+            } else {
+                let boundingSize = col.viewProvider.boundingSize(widthConstraint: inWidth)
+                size = CGSize(width: max(inWidth, boundingSize.width), height: boundingSize.height)
+            }
             let height = size.height
             guard size.width <= inWidth else {
                 let description = "Width of custom view is loonger than given width of cell content view (provider.viewSize().width=\(size.width), inWidth=\(inWidth))."

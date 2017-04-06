@@ -24,7 +24,9 @@ public protocol ViewProvider {
     /// Customizes given view with content.
     func customize(view view: UIView)
 
-    /// Returns size of view respecting given width. Height should be dynamicaly
-    /// calculated based on content.
-    func size(for width: CGFloat) -> CGSize
+    /// Returns size of view respecting given width constraints. Height should
+    /// be dynamicaly calculated based on content.
+    ///
+    /// - Note: Returned size.width should be lower than given widhtContraint.
+    func boundingSize(widthConstraint width: CGFloat) -> CGSize
 }
