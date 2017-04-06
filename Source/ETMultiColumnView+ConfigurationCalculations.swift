@@ -113,7 +113,7 @@ public extension ETMultiColumnView.Configuration {
                 throw ETMultiColumnView.Error.insufficientWidth(description: description)
             }
 
-            return ColumnWrapper(column: col, size: CGSize(width: outWidth, height: height + verticalEdges), edges: edges, borders: borders, alignment: alignment)
+            return ColumnWrapper(column: col, size: CGSize(width: ceil(outWidth), height: ceil(height + verticalEdges)), edges: edges, borders: borders, alignment: alignment)
         }
         
         return result
