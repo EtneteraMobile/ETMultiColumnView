@@ -22,9 +22,9 @@ public final class ETMultiColumnView: UIView, MultiColumnConfigurable {
     // MARK: private
     
     /// Cell configuration structure
-    private var config: Configuration
-    private let borderLayer: CALayer
-    private let path = UIBezierPath()
+    fileprivate var config: Configuration
+    fileprivate let borderLayer: CALayer
+    fileprivate let path = UIBezierPath()
     
     // MARK: - Initialization
     
@@ -48,7 +48,7 @@ public final class ETMultiColumnView: UIView, MultiColumnConfigurable {
     // MARK: - private
 
     /// Setup subviews based on current configuration.
-    private func setupSubviews() {
+    fileprivate func setupSubviews() {
         config.columns.forEach { columnConfig in
             addSubview(columnConfig.viewProvider.make())
             borderLayer.addSublayer(CAShapeLayer())
@@ -56,7 +56,7 @@ public final class ETMultiColumnView: UIView, MultiColumnConfigurable {
     }
 
     /// Customize columns with content from current configuration.
-    private func customizeColumns() throws {
+    fileprivate func customizeColumns() throws {
         let subviewsCount = subviews.count
         var lastRightEdge: CGFloat = 0.0
 
@@ -65,7 +65,7 @@ public final class ETMultiColumnView: UIView, MultiColumnConfigurable {
 
         borderLayer.frame = bounds
 
-        for (offset, columnWrapper) in columnsWithSizes.enumerate() {
+        for (offset, columnWrapper) in columnsWithSizes.enumerated() {
             guard offset < subviewsCount else { return }
             let subview = subviews[offset]
 
@@ -80,7 +80,7 @@ public final class ETMultiColumnView: UIView, MultiColumnConfigurable {
         frame = CGRect(origin: frame.origin, size: CGSize(width: frame.width, height: maxHeight))
     }
 
-    private func makeFrame(for columnWrapper: ETMultiColumnView.Configuration.ColumnWrapper, x: CGFloat, maxHeight: CGFloat) -> CGRect {
+    fileprivate func makeFrame(for columnWrapper: ETMultiColumnView.Configuration.ColumnWrapper, x: CGFloat, maxHeight: CGFloat) -> CGRect {
         let edgeInsets = columnWrapper.edges.insets
         let columnWidth = columnWrapper.size.width
         let inWidth = columnWidth - edgeInsets.horizontal
@@ -100,7 +100,7 @@ public final class ETMultiColumnView: UIView, MultiColumnConfigurable {
         return CGRect(origin: CGPoint(x: x + edgeInsets.left, y: top), size: contentSize).integral
     }
 
-    private func adjustBorder(on border: CALayer, at idx: Int, x: CGFloat, _ wrapper: ETMultiColumnView.Configuration.ColumnWrapper) {
+    fileprivate func adjustBorder(on border: CALayer, at idx: Int, x: CGFloat, _ wrapper: ETMultiColumnView.Configuration.ColumnWrapper) {
         let layer = border.sublayers?[idx]
         let columnSize = CGSize(width: wrapper.size.width, height: frame.height)
         layer?.frame = CGRect(origin: CGPoint(x: x, y: 0), size: columnSize)
@@ -121,19 +121,19 @@ public final class ETMultiColumnView: UIView, MultiColumnConfigurable {
     ///   - layer: expects CAShapeLayer
     ///   - width: border width
     ///   - color: border color
-    private func showLeftBorder(column layer: CALayer?, width: CGFloat, color: UIColor) {
+    fileprivate func showLeftBorder(column layer: CALayer?, width: CGFloat, color: UIColor) {
         guard let sublayer = layer as? CAShapeLayer else { return }
 
         path.removeAllPoints()
-        path.moveToPoint(.zero)
-        path.addLineToPoint(CGPoint(x: 0, y: frame.height))
+        path.move(to: .zero)
+        path.addLine(to: CGPoint(x: 0, y: frame.height))
 
-        sublayer.path = path.CGPath
-        sublayer.strokeColor = color.CGColor
+        sublayer.path = path.cgPath
+        sublayer.strokeColor = color.cgColor
         sublayer.lineWidth = width
     }
 
-    private func hideBorders(column layer: CALayer?) {
+    fileprivate func hideBorders(column layer: CALayer?) {
         guard let sublayer = layer as? CAShapeLayer else { return }
         sublayer.path = nil
     }
@@ -190,9 +190,9 @@ public extension ETMultiColumnView {
 
 // MARK: - Helpers
 
-private extension CollectionType where Generator.Element == ETMultiColumnView.Configuration.ColumnWrapper {
+private extension Collection where Iterator.Element == ETMultiColumnView.Configuration.ColumnWrapper {
 
     var maxHeight: CGFloat {
-        return self.maxElement({ $0.size.height < $1.size.height })?.size.height ?? 0.0
+        return self.max(by: { $0.size.height < $1.size.height })?.size.height ?? 0.0
     }
 }

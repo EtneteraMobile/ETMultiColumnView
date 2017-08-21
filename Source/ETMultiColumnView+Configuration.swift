@@ -95,7 +95,7 @@ public extension ETMultiColumnView.Configuration.Column {
 
         // MARK: - Builders
 
-        public static func relative(borders borders: [Border] = [], edges: Edges = .zero, verticalAlignment: VerticalAlignment = .top) -> Layout {
+        public static func relative(borders: [Border] = [], edges: Edges = .zero, verticalAlignment: VerticalAlignment = .top) -> Layout {
             return .rel(borders: borders, edges: edges, verticalAlignment: verticalAlignment)
         }
 
@@ -103,7 +103,7 @@ public extension ETMultiColumnView.Configuration.Column {
             return .fix(outWidth: width, borders: borders, edges: edges, verticalAlignment: verticalAlignment)
         }
 
-        public static func fitContent(maxOutWidth maxWidth: CGFloat = CGFloat.max, borders: [Border] = [], edges: Edges = .zero, verticalAlignment: VerticalAlignment = .top) -> Layout {
+        public static func fitContent(maxOutWidth maxWidth: CGFloat = CGFloat.greatestFiniteMagnitude, borders: [Border] = [], edges: Edges = .zero, verticalAlignment: VerticalAlignment = .top) -> Layout {
             return .fit(maxOutWidth: maxWidth, borders: borders, edges: edges, verticalAlignment: verticalAlignment)
         }
     }
@@ -155,15 +155,15 @@ public extension ETMultiColumnView.Configuration.Column.Layout {
 
         // MARK: - Builders
 
-        public static func insets(top top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) -> Edges {
+        public static func insets(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) -> Edges {
             return .inner(top: top, left: left, bottom: bottom, right: right)
         }
 
-        public static func insets(vertical vertical: CGFloat = 0, horizontal: CGFloat = 0) -> Edges {
+        public static func insets(vertical: CGFloat = 0, horizontal: CGFloat = 0) -> Edges {
             return .inner(top: vertical, left: horizontal, bottom: vertical, right: horizontal)
         }
 
-        public static func insets(all all: CGFloat = 0) -> Edges {
+        public static func insets(all: CGFloat = 0) -> Edges {
             return .inner(top: all, left: all, bottom: all, right: all)
         }
 

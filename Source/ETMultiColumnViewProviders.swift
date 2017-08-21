@@ -22,7 +22,7 @@ public protocol ViewProvider {
     func make() -> UIView
 
     /// Customizes given view with content.
-    func customize(view view: UIView)
+    func customize(view: UIView)
 
     /// Returns size of view respecting given width constraints. Height should
     /// be dynamicaly calculated based on content.
