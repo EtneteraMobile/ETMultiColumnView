@@ -13,7 +13,7 @@ import UIKit
 public extension ETMultiColumnView {
 
     /// ETMultiColumnView configuration structure
-    public struct Configuration: Hashable {
+    struct Configuration: Hashable {
 
         // MARK: - Variables
         // MARK: public
@@ -23,10 +23,6 @@ public extension ETMultiColumnView {
 
         /// Background color of contentView
         public let backgroundColor: UIColor?
-
-        public var hashValue: Int {
-            return columns.reduce(0) { $0 ^ $1.hashValue }
-        }
 
         // MARK: - Initialization
 
@@ -46,17 +42,13 @@ public func ==(lhs: ETMultiColumnView.Configuration, rhs: ETMultiColumnView.Conf
 public extension ETMultiColumnView.Configuration {
 
     /// Column configuration structure of ETMultiColumnView
-    public struct Column: Hashable {
+    struct Column: Hashable {
 
         // MARK: - Variables
         // MARK: public
 
         public let layout: Layout
         public let viewProvider: ViewProvider
-
-        public var hashValue: Int {
-            return layout.hashValue ^ viewProvider.hashValue
-        }
 
         // MARK: internal
 
@@ -67,6 +59,11 @@ public extension ETMultiColumnView.Configuration {
         public init(layout: Layout, content viewProvider: ViewProvider) {
             self.layout = layout
             self.viewProvider = viewProvider
+        }
+
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(layout.hashValue)
+            hasher.combine(viewProvider.hashValue)
         }
     }
 }
@@ -79,14 +76,7 @@ public extension ETMultiColumnView.Configuration.Column {
     ///
     /// - relative: relative size column
     /// - fixed: fixed size column (size as parameter)
-    public enum Layout: Hashable {
-
-        public var hashValue: Int {
-            if case let .rel(b, e, a) = self { return b.reduce(0) { $0 ^ $1.hashValue } ^ e.hashValue ^ a.hashValue }
-            if case let .fix(w, b, e, a) = self { return w.hashValue ^ b.reduce(0) { $0 ^ $1.hashValue } ^ e.hashValue ^ a.hashValue }
-            return 0
-        }
-
+    enum Layout: Hashable {
         // MARK: - Cases
 
         case rel(borders: [Border], edges: Edges, verticalAlignment: VerticalAlignment)
@@ -113,27 +103,14 @@ public extension ETMultiColumnView.Configuration.Column {
 
 public extension ETMultiColumnView.Configuration.Column.Layout {
 
-    public enum Border: Hashable {
+    enum Border: Hashable {
         case left(width: CGFloat, color: UIColor)
-
-        public var hashValue: Int {
-            if case let .left(w, c) = self { return w.hashValue ^ c.hashValue}
-            return 0
-        }
     }
 
-    public enum VerticalAlignment: Hashable {
+    enum VerticalAlignment: Hashable {
         case top
         case middle
         case bottom
-
-        public var hashValue: Int {
-            switch self {
-            case .top: return 11
-            case .middle: return 22
-            case .bottom: return 33
-            }
-        }
     }
 }
 
@@ -141,13 +118,7 @@ public extension ETMultiColumnView.Configuration.Column.Layout {
 
 public extension ETMultiColumnView.Configuration.Column.Layout {
 
-    public enum Edges: Hashable {
-
-        public var hashValue: Int {
-            if case let .inner(t, l, b, r) = self { return t.hashValue ^ l.hashValue ^ b.hashValue ^ r.hashValue }
-            return 0
-        }
-
+    enum Edges: Hashable {
         // MARK: - Cases
 
         case inner(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat)

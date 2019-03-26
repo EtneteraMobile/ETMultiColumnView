@@ -12,7 +12,7 @@ import UIKit
 
 public extension ETMultiColumnView.Configuration {
 
-    public struct ColumnWrapper {
+    struct ColumnWrapper {
         let column: ETMultiColumnView.Configuration.Column
         let size: CGSize
         let edges: Column.Layout.Edges
@@ -23,7 +23,7 @@ public extension ETMultiColumnView.Configuration {
     internal func columnsWithSizes(in width: CGFloat) throws -> [ColumnWrapper] {
 
         // Is width valid
-        guard width > 0.0 else { throw ETMultiColumnView.Error.invalidWidth() }
+        guard width > 0.0 else { throw ETMultiColumnView.Error.invalidWidth }
 
         // Calculates fitContent columns width
         let precalculatedColumns: [Column] = columns.map {

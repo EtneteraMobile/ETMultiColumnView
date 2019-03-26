@@ -171,7 +171,7 @@ public extension ETMultiColumnView {
     ///
     /// - Parameter config: cell configuration
     /// - Returns: unique string - hash from cell configuaration layout parameters
-    public static func identifier(with config: ETMultiColumnView.Configuration) -> String {
+    static func identifier(with config: ETMultiColumnView.Configuration) -> String {
         let cellId = NSStringFromClass(ETMultiColumnView.self)
         let columnsId = config.columns.reduce("") { return $0 + $1.viewProvider.reuseId }
 
@@ -182,7 +182,7 @@ public extension ETMultiColumnView {
     ///
     /// - Parameter config: cell configuration
     /// - Returns: height of cell for given configuration
-    public static func height(with config: ETMultiColumnView.Configuration, width: CGFloat) throws -> CGFloat {
+    static func height(with config: ETMultiColumnView.Configuration, width: CGFloat) throws -> CGFloat {
         let columnsWithSizes = try config.columnsWithSizes(in: width)
         return columnsWithSizes.maxHeight
     }
